@@ -20,4 +20,11 @@ class AuditTest < Minitest::Test
 
     assert_equal @company, result
   end
+
+  def test_were_invalid_days_worked
+    result = @audit.were_invalid_days_worked
+
+    assert_instance_of String, result
+    assert result.include?('invalid employee id')
+  end
 end
