@@ -40,4 +40,10 @@ class Company
       { success: false, error: 'bad data' }
     end
   end
+
+  def find_employee_by_id(id)
+    @employees.find do |employee|
+      employee.employee_id == id
+    end
+  end
 end

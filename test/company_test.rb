@@ -60,4 +60,13 @@ class CompanyTest < Minitest::Test
 
     assert_equal ({ success: false, error: 'bad data' }), timesheets_bad
   end
+
+  def test_company_find_employee_by_id
+    @company.load_employees('./data/employees.csv')
+    employee = @company.find_employee_by_id(1)
+
+    assert_equal 1, employee.employee_id
+    assert_equal 'Susan Smith', employee.name
+    assert_equal 'Manager', employee.role
+  end
 end
