@@ -46,4 +46,12 @@ class AuditTest < Minitest::Test
     assert result_true
     refute result_false
   end
+
+  def test_worked_outside_of_project
+    @audit.load_company(@company)
+    result_true = @audit.worked_outside_of_project?(2017-06-01, 2)
+    # result_false = @audit.worked_outside_of_project?(4)
+
+    assert result_true
+  end
 end
