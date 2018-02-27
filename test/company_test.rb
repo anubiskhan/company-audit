@@ -1,8 +1,5 @@
 require './test/test_helper'
 require './lib/company'
-require './lib/employee'
-require './lib/project'
-require './lib/timesheet'
 
 class CompanyTest < Minitest::Test
   def setup
