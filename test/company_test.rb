@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/company'
+require './lib/employee'
 
 class CompanyTest < Minitest::Test
   def setup
@@ -16,12 +17,17 @@ class CompanyTest < Minitest::Test
     assert_equal [], @company.timesheets
   end
 
-  def test_load_employees
+  def test_load_employees_works_for_good_data
     employees_good = @company.load_employees('./data/employees.csv')
+
+    assert_equal 2, @company.employees.length
+    assert_equal ({success: true, error: nil}), employees_good
+  end
+
+  def test_load_employees_works_for_bad_data
+    skip
     employees_bad = @company.load_employees('./data/bad_employees.csv')
 
-    assert_instance_of Hash, employees_good
-    assert employees_good.include?('success')
-    assert employees_bad.include?('error')
+    assert_equal ({success: false, error: 'bad data'}), employees_bad
   end
 end
