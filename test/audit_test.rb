@@ -22,9 +22,28 @@ class AuditTest < Minitest::Test
   end
 
   def test_were_invalid_days_worked
+    skip
     result = @audit.were_invalid_days_worked
 
     assert_instance_of String, result
     assert result.include?('invalid employee id')
+  end
+
+  def test_valid_employee
+    @audit.load_company(@company)
+    result_true = @audit.valid_employee?(1)
+    result_false = @audit.valid_employee?(3)
+
+    assert result_true
+    refute result_false
+  end
+
+  def test_valid_project
+    @audit.load_company(@company)
+    result_true = @audit.valid_project?(1)
+    result_false = @audit.valid_project?(4)
+
+    assert result_true
+    refute result_false
   end
 end
