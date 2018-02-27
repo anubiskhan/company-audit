@@ -64,9 +64,21 @@ class CompanyTest < Minitest::Test
   def test_company_find_employee_by_id
     @company.load_employees('./data/employees.csv')
     employee = @company.find_employee_by_id(1)
+    employee_nil = @company.find_employee_by_id(77)
 
     assert_equal 1, employee.employee_id
     assert_equal 'Susan Smith', employee.name
     assert_equal 'Manager', employee.role
+    assert_nil employee_nil
+  end
+
+  def test_company_find_project_by_id
+    @company.load_projects('./data/projects.csv')
+    project = @company.find_project_by_id(1)
+    project_nil = @company.find_project_by_id(77)
+
+    assert_equal 1, project.project_id
+    assert_equal 'Widgets', project.name
+    assert_nil project_nil
   end
 end

@@ -46,4 +46,10 @@ class Company
       employee.employee_id == id
     end
   end
+
+  def find_project_by_id(id)
+    @projects.find do |project|
+      project.project_id == id
+    end
+  end
 end
