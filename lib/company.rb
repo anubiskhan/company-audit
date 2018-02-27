@@ -18,4 +18,26 @@ class Company
       { success: false, error: 'bad data' }
     end
   end
+
+  def load_projects(filepath)
+    begin
+      CSV.foreach(filepath) do |row|
+        @projects << Project.new(row[0], row[1], row[2], row[3])
+      end
+      { success: true, error: nil }
+    rescue NoMethodError
+      { success: false, error: 'bad data' }
+    end
+  end
+
+  def load_timesheets(filepath)
+    begin
+      CSV.foreach(filepath) do |row|
+        @timesheets << Timesheet.new(row[0], row[1], row[2], row[3])
+      end
+      { success: true, error: nil }
+    rescue NoMethodError
+      { success: false, error: 'bad data' }
+    end
+  end
 end
